@@ -277,20 +277,7 @@
         <!-- Overview Content -->
         <div id="overview-content" class="dashboard-section">
             <h2>Overview</h2>
-            <div class="gauge-chart-container">
-                <div id="dataUsageChart" class="gauge-chart"></div>
-                <div id="ratioChart" class="gauge-chart"></div>
-                <div id="dataSharedChart" class="gauge-chart"></div>
-            </div>
-
-            <div class="usage-cost-container">
-                <div class="usage-history">
-                    Usage History Line Graph Here
-                </div>
-                <div class="cost-info">
-                    <div class="cost-icon">£</div> Cost info here
-                </div>
-            </div>
+            <p>This is the overview section content.</p>
         </div>
 
         <!-- Account Settings Content -->
@@ -387,73 +374,6 @@
                 body.classList.toggle('sidebar-open');
             }
         }
-
-        // --- Gauge Chart Rendering ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const renderGaugeChart = (chartId, values, title, units, min, max, colorStops) => {
-                const config = {
-                    type: 'gauge',
-                    data: {
-                        type: 'gauge',
-                        plot: {
-                            aperture: 180,
-                            size: '100%',
-                            valueBox: { visible: false } // Hide default value box
-                        },
-                        scaleR: {
-                            aperture: 180,
-                            minValue: min,
-                            maxValue: max,
-                            center: { visible: false },
-                            tick: { visible: false },
-                            item: { visible: false }, // Hide labels
-                            ring: {
-                                size: 40,
-                                backgroundColor: '#e0e0e0', // Default grey ring
-                                rules: colorStops // Apply color stops for continuous color change
-                            }
-                        },
-                        series: [{
-                            values: [values],
-                            animation: { effect: 2, method: 1, sequence: 4, speed: 900 },
-                            indicator: [15, 15, 15, 15, 0] // Adjust indicator for speedometer style
-                        }]
-                    },
-                    labels: [{ // Custom labels for chart title and units
-                        text: title,
-                        x: '50%',
-                        y: '35%', // Adjust vertical position
-                        textAlign: 'center',
-                        fontSize: '1em',
-                        fontFamily: 'Arial',
-                        color: '#333'
-                    }, {
-                        text: units,
-                        x: '50%',
-                        y: '65%', // Adjust vertical position
-                        textAlign: 'center',
-                        fontSize: '0.9em',
-                        fontFamily: 'Arial',
-                        color: '#555'
-                    }]
-                };
-                zingchart.render({ id: chartId, data: config, height: '100%', width: '100%' });
-            };
-
-
-            // Example Color Stops for Continuous Green Gradient
-            const greenColorStops = [
-                { rule: '%v <= 30', backgroundColor: '#c8e6c9' },   // Lightest green
-                { rule: '%v > 30 && %v <= 60', backgroundColor: '#a5d6a7' }, // Medium light green
-                { rule: '%v > 60 && %v <= 80', backgroundColor: '#66bb6a' },   // Medium green
-                { rule: '%v > 80', backgroundColor: '#388e3c' }    // Darkest green
-            ];
-
-
-            renderGaugeChart('dataUsageChart', 65, 'Data Usage', 'GB', 0, 100, greenColorStops);
-            renderGaugeChart('ratioChart', 90, 'Sharing Ratio', '%', 0, 100, greenColorStops);
-            renderGaugeChart('dataSharedChart', 40, 'Data Shared', 'GB', 0, 100, greenColorStops);
-        });
 
 
     </script>
